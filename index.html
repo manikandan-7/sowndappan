@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="background-img">
+      <div class="centered"><span class="header-brand">Spot</span><span class="headerSpan">Food</span></div>
+      <div class="top-right">SignIn</div>
+    </div>
+
+    <!-- Card -->
+    <br />
+    <div class="Card" id="Card">
+      <h1>Generate Share</h1>
+      <label id="totalAmoutLabel">Total Amount</label><br />
+      <input type="number" name="totalAmount" id="totalAmount" /><br /><br />
+      <label id="noOfPeopleLabel">No Of People</label><br />
+      <input type="number" name="noOfPeople" id="noOfPeople" /><br /><br />
+      <button value="Submit" onclick="getValue()">Submit</button>
+    </div>
+
+    <br />
+    <!-- Get people value -->
+    <div id="People"></div>
+
+    <br />
+    <!-- display Table -->
+    <div id="PeopleTable"></div>
+
+    <div class="footer">
+      <p><span>Copyrights@2019</span> <span class="header-brand">Spot</span><span class="headerSpan">Food</span></p>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

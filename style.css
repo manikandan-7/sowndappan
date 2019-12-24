@@ -1,0 +1,147 @@
+body {
+  text-align: center;
+  font-family: monospace;
+  padding: 0;
+  overflow-x: hidden;
+  margin: 0;
+}
+.background-img {
+  background-image: url("./img/mccain-fries-and-appetizers.jpg");
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+.logo {
+  width: 10%;
+}
+.top-right {
+  position: absolute;
+  top: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 1vmax;
+  right: 16px;
+}
+.header-brand {
+  font-size: 10vmin;
+  font-weight: bold;
+  color: black;
+}
+.headerSpan {
+  font-size: 5vmin;
+  font-weight: bold;
+  color: green;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+#People,
+#PeopleTable {
+  margin-top: 10%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.Card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Card {
+  margin: auto;
+  margin-top: -8%;
+  text-align: center;
+  padding: 3%;
+  width: 14%;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input:focus {
+  border: 3px solid #555;
+}
+button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 100px) {
+  input {
+    width: 100%;
+  }
+  .Card {
+    margin-top: -22%;
+    width: 80%;
+  }
+  .top-right {
+    font-size: larger;
+  }
+  #People,
+  #PeopleTable {
+    margin-top: 30%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  input {
+    width: 100%;
+  }
+  .Card {
+    margin-top: -8%;
+    width: 40%;
+  }
+  #People,
+  #PeopleTable {
+    margin-top: 10%;
+  }
+}
+label {
+  margin-top: 5%;
+  font-size: small;
+  float: left;
+}
+.footer {
+  margin-top: 10%;
+  width: 100%;
+  padding: 1%;
+  font-size: 1vmax;
+  font-weight: bold;
+  text-align: center;
+}
