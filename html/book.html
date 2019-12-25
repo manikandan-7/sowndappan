@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/book.css">
+    <link href="https://fonts.googleapis.com/css?family=Fugaz+One&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="Card" id="Card">
+      <div class="header"><h1 class="heading">Book</h1></div>
+      <div class="form">
+        <label for="form">Book From</label>
+        <select id="bookFrom">
+          <option>None</option>
+          <option>Coimbatore</option>
+          <option>Salem</option>
+          <option>Chennai</option>
+        </select>
+        <label for="to">Book To</label>
+        <select id="bookTo">
+          <option>None</option>
+          <option>Coimbatore</option>
+          <option>Salem</option>
+          <option>Chennai</option>
+        </select>
+        <div style="text-align: center;">
+           <button class="btn-hover color-3" onclick="viewTravels()">View Travels</button>
+           <button value="Cancel" class="btn-hover color-2" onclick="indexRoute()">Cancel</button>
+        </div>
+        <div id="Details"></div>
+        <div id="Seats"></div>
+        <div id="myModal" class="modal"></div>    
+      </div>
+   
+  
+    <script src="../script/script.js"></script>
+  </body>
+</html>

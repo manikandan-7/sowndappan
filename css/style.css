@@ -1,0 +1,86 @@
+.primary {
+  color: white;
+  background-color: blue;
+  width: 50px;
+  height: 28px;
+  border: none;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  font-weight: bold;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.background-img {
+  background-image: url("../Img/banner.png");
+  margin-top: -5%;
+  margin-left: 4%;
+  background-repeat: no-repeat;
+  min-height: 690px;
+  min-width: 1000px;
+}
+
+.centered {
+  position: absolute;
+  top: 26%;
+  left: 32%;
+}
+
+.banner-text {
+  position: absolute;
+  top: 10%;
+  left: 40%;
+  font-size: 5vw;
+}
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 100%;
+  height: 100%;
+  padding: 30%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+@media screen and (min-width: 100px) and (max-width: 600px) {
+  .centered {
+    top: 30%;
+    left: 19%;
+  }
+
+  .banner-text {
+    top: 15%;
+    left: 20%;
+    font-size: 16vw;
+  }
+  .background-img {
+    margin-top: -5%;
+    margin-left: -120%;
+    min-height: 1000px;
+    min-width: 100px;
+  }
+}

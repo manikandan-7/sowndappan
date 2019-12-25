@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let Travels = [];
+      window.localStorage.setItem("Travels", JSON.stringify(Travels));
+      let data = window.localStorage.getItem("Travel");
+      let pushedData = JSON.parse(data);
+      if (!pushedData) alert("No data");
+      // pushedData.push({ name: "Anto" });
+      // window.localStorage.setItem("Travels", JSON.stringify(pushedData));
+      // data = window.localStorage.getItem("Travels");
+      // pushedData = JSON.parse(data);
+      // console.log(pushedData);
+      // window.localStorage.removeItem("Travels");
+    </script>
+  </body>
+</html>

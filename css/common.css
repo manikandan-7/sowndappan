@@ -1,0 +1,89 @@
+body {
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  font-family: "Fugaz One", cursive;
+}
+
+.buttons {
+  margin: 10%;
+  text-align: center;
+}
+
+.btn-hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+/* //seats */
+.seat-buttons {
+  margin: 0;
+  border: none;
+}
+
+.seat-btn-hover {
+  width: 40px;
+  color: #fff;
+  cursor: pointer;
+  margin: 1%;
+  height: 40px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.seat-btn-hover:hover {
+  background-position: 100% 0;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.seat-btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color-1 {
+  background-image: linear-gradient(to right, #30dd8a, #2bb673, #30ddcf, #2ba1b6);
+}
+.btn-hover.color-2 {
+  background-image: linear-gradient(to right, #eb2816, #eb4513, #fa7199, #e85a19);
+}
+.btn-hover.color-3 {
+  background-image: linear-gradient(to right, #667eea, #764ba2, #6b8dd6, #8e37d7);
+}
+
+.seat-btn-hover.unSelect {
+  background-image: linear-gradient(to right, #30dd8a, #2bb673, #30ddcf, #2ba1b6);
+}
+.seat-btn-hover.booked {
+  background-image: linear-gradient(to right, #625f5d, #696767, #413c3d, #1d1714);
+}
+.seat-btn-hover.select {
+  background-image: linear-gradient(to right, #667eea, #764ba2, #6b8dd6, #8e37d7);
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/add.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link href="https://fonts.googleapis.com/css?family=Fugaz+One&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="image"><img src="../Img/bg.png" alt=""></div>
+    <div class="card-div">
+      <div class="Card" id="Card">
+        <div class="header"><h1 class="heading">Register</h1></div>
+        <div class="form">
+          <label for="Name">Travels Name</label>
+          <input type="text" name="name" id="name" />
+          <label for="form">From City</label>
+          <select id="addTravelsFrom">
+            <option>None</option>
+            <option>Coimbatore</option>
+            <option>Salem</option>
+            <option>Chennai</option>
+          </select>
+          <label for="to">To City</label>
+          <select id="addTravelsTo">
+            <option>None</option>
+            <option>Coimbatore</option>
+            <option>Salem</option>
+            <option>Chennai</option>
+          </select>
+          <label for="noOfSeats"">Number Of Seats</label>
+          <input type="number" name="noOfSeats" id="noOfSeats" />
+          <div style="text-align: center;">
+            <button value="Register" class="btn-hover color-3" onclick="addTravels()">Register</button>
+            <button value="Cancel" class="btn-hover color-3" onclick="indexRoute()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+    <script src="../script/script.js"></script>
+  </body>
+</html>
