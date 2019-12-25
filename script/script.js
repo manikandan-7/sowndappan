@@ -1,51 +1,38 @@
 let state = {
-  Travels: [
-    { from: "Salem", id: 0.8153748816684404, name: "RedBus", noOfSeats: 5, to: "Chennai", seats: [0, 1, 0, 0, 0] },
-    { from: "Chennai", id: 0.8153748286684421, name: "Yuri", noOfSeats: 5, to: "Salem", seats: [0, 0, 1, 0, 0] },
-    { from: "Coimbatore", id: 0.8153458886684404, name: "Keerthi", noOfSeats: 5, to: "Salem", seats: [0, 0, 1, 1, 0] },
-    { from: "Chennai", id: 0.8153748686684421, name: "Arthi", noOfSeats: 4, to: "Coimbatore", seats: [0, 0, 0, 0] },
-    { from: "Salem", id: 0.8153748882684404, name: "Red", noOfSeats: 4, to: "Chennai", seats: [0, 0, 0, 0] },
-    { from: "Chennai", id: 0.8153748886694421, name: "Vinayaga", noOfSeats: 5, to: "Salem", seats: [1, 0, 1, 0, 0] },
-    { from: "Coimbatore", id: 0.8153758866684404, name: "Geethu", noOfSeats: 5, to: "Salem", seats: [0, 0, 0, 0, 1] },
-    { from: "Chennai", id: 0.8153748886384421, name: "Bus", noOfSeats: 5, to: "Coimbatore", seats: [0, 1, 0, 1, 0] },
-    { from: "Salem", id: 0.8153748986684404, name: "CoinBus", noOfSeats: 5, to: "Coimbatore", seats: [0, 0, 0, 0, 0] },
-    { from: "Salem", id: 0.8153748886614404, name: "BusStore", noOfSeats: 5, to: "Coimbatore", seats: [0, 0, 0, 1, 0] }
-  ],
-  pickUpAndDropPoints: {
-    Salem: ["Salem-1", "Salem-2", "Salem-3", "Salem-4"],
-    Coimbatore: ["Coimbatore-1", "Coimbatore-2", "Coimbatore-3", "Coimbatore-4"],
-    Chennai: ["Chennai-1", "Chennai-2", "Chennai-3", "Chennai-4"]
-  },
-  userDetails: {
-    name: "",
-    age: 0,
-    fromCity: "",
-    toCity: "",
-    fromPlace: "",
-    toPlace: "",
-    travelsId: "",
-    travelsName: "",
-    userSeats: []
-  }
+  Travels: [],
+  userDetails: { userSeats: [] }
 };
 
+let pickUpAndDropPoints = {
+  Salem: ["Salem-1", "Salem-2", "Salem-3", "Salem-4"],
+  Coimbatore: ["Coimbatore-1", "Coimbatore-2", "Coimbatore-3", "Coimbatore-4"],
+  Chennai: ["Chennai-1", "Chennai-2", "Chennai-3", "Chennai-4"]
+};
+
+// access Local storage
 storeToLocalStorage = state => window.localStorage.setItem("state", JSON.stringify(state));
 getFromLocalStorage = () => JSON.parse(window.localStorage.getItem("state"));
+if (!getFromLocalStorage()) {
+  window.localStorage.setItem("state", JSON.stringify(state));
+}
 
-// routes
+// routes to redirect to the next page
 indexRoute = () => window.location.replace("/html/index.html");
 addTravelsRoute = () => window.location.replace("/html/addTravel.html");
 bookRoute = () => {
-  if (state.Travels.length) window.location.replace("/html/book.html");
+  if (getFromLocalStorage().Travels.length != 0) window.location.replace("/html/book.html");
+  else alert("No Bus To Book");
 };
 bookingSuccessFull = () => {
   alert("Thanks for Booking ... ");
   indexRoute();
 };
+
 // helperFunctions
 generatePlace = (input, tagName) => {
+  let state = getFromLocalStorage();
   let selectTag = `<select id=${tagName}>`;
-  state.pickUpAndDropPoints[input].forEach(element => (selectTag += `<option>${element}</option>`));
+  pickUpAndDropPoints[input].forEach(element => (selectTag += `<option>${element}</option>`));
   selectTag += "</select>";
   return selectTag;
 };
@@ -69,8 +56,13 @@ generateSeats = input => {
   });
   return createSeats;
 };
-// functions
 
+closeModal = () => {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+};
+
+//Main Functions
 addTravels = () => {
   let name = document.getElementById("name").value,
     noOfSeats = document.getElementById("noOfSeats").value,
@@ -188,22 +180,9 @@ book = () => {
   storeToLocalStorage(state);
   state = getFromLocalStorage();
   let { userName, age, userSeats } = state.userDetails;
-
-  // validate details
   if (userName == "") return alert("Please Enter Name");
   if (age == "" || age < 16) return alert("Please Enter Age and Age should Be greater than 15");
   if (userSeats.length == 0) return alert("Please select seat");
-
   modal.innerHTML = generateModelData();
   modal.style.display = "block";
 };
-
-// When the user clicks on <span> (x), close the modal
-closeModal = () => {
-  var modal = document.getElementById("myModal");
-  modal.style.display = "none";
-};
-
-if (!getFromLocalStorage()) {
-  window.localStorage.setItem("state", JSON.stringify(state));
-}

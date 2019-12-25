@@ -7,18 +7,13 @@
     <title>Document</title>
   </head>
   <body>
+    <div class="out">
+      <div class="in"></div>
+    </div>
+
     <script>
-      let Travels = [];
-      window.localStorage.setItem("Travels", JSON.stringify(Travels));
-      let data = window.localStorage.getItem("Travel");
-      let pushedData = JSON.parse(data);
-      if (!pushedData) alert("No data");
-      // pushedData.push({ name: "Anto" });
-      // window.localStorage.setItem("Travels", JSON.stringify(pushedData));
-      // data = window.localStorage.getItem("Travels");
-      // pushedData = JSON.parse(data);
-      // console.log(pushedData);
-      // window.localStorage.removeItem("Travels");
+      let body = document.body.childNodes[1].childNodes[1];
+      console.log(body);
     </script>
   </body>
 </html>
