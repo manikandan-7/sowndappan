@@ -66,6 +66,9 @@ generateSeats = input => {
 
 closeModal = () => {
   var modal = document.getElementById("myModal");
+  let data = getFromLocalStorage();
+  data.userDetails.userSeats = [];
+  storeToLocalStorage(data);
   modal.style.display = "none";
 };
 
@@ -137,6 +140,7 @@ addTravels = () => {
     state = getFromLocalStorage(),
     seats = [];
   if (name == "") return alert("Name cant be empty");
+  if (!(noOfSeats > 10 && noOfSeats < 40)) alert("Seats Value is too high");
   if (fromCity === toCity) return alert("From and To are Same");
   if (noOfSeats == "") return alert("No Of Seats cant be empty");
   if (fromCity === "None" || toCity === "None") return alert("Please choose user Location");
@@ -246,7 +250,7 @@ generateModelData = () => {
     { fromCity, toCity, travelsName, userName, age, userSeats, fromPlace, toPlace } = state.userDetails,
     seats = "",
     Preview = "";
-  for (var i = 0; i < userSeats.length; i++) seats += userSeats[i] + " ";
+  for (var i = 0; i < userSeats.length; i++) seats += "s-" + userSeats[i] + " ";
   Preview = ` <div class="modal-content">
   <h3>Seat Info</h3>
    <table>
@@ -281,7 +285,7 @@ book = () => {
   state = getFromLocalStorage();
   let { userName, age, userSeats } = state.userDetails;
   if (userName == "") return alert("Please Enter Name");
-  if (age == "" || age < 16) return alert("Please Enter Age and Age should Be greater than 15");
+  if (age == "" || age < 16 || age > 90) return alert("Age should Be greater than 15 and below 100");
   if (userSeats.length == 0) return alert("Please select seat");
   modal.innerHTML = generateModelData();
   modal.style.display = "block";
