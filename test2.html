@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <style>
+      .data {
+        border: solid;
+        border-width: 1px;
+        width: 10%;
+        height: 10%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main"></div>
+    <div class="data" id="data"></div>
+    <script>
+      //create button
+      let main = document.body.childNodes[1];
+      console.log(document.body.childNodes);
+      let data = document.body.childNodes[3];
+      console.log(data);
+      var x = document.createElement("BUTTON");
+      var t = document.createTextNode("Click me");
+      x.setAttribute("onclick", "hello()");
+      x.setAttribute("class", "button btn-hover color-2");
+      x.appendChild(t);
+      //create input tag
+      var input = document.createElement("INPUT");
+      var t = document.createTextNode("Click me");
+      input.setAttribute("type", "text");
+      input.setAttribute("name", "name");
+      input.setAttribute("id", "name");
+      input.appendChild(t);
+      main.appendChild(x);
+      main.appendChild(input);
+
+      //Create array of options to be added
+      var array = ["Volvo", "Saab", "Mercades", "Audi"];
+
+      //Create and append select list
+      var selectList = document.createElement("select");
+      selectList.id = "mySelect";
+      main.appendChild(selectList);
+
+      //Create and append the options
+      for (var i = 0; i < array.length; i++) {
+        var option = document.createElement("option");
+        option.value = array[i];
+        option.text = array[i];
+        selectList.appendChild(option);
+      }
+    </script>
+  </body>
+</html>

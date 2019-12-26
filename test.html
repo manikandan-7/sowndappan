@@ -5,15 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    <style>
+      .main {
+        width: 100%;
+        padding: 0;
+        border: solid;
+        border-width: 1px;
+        height: 500px;
+        display: flex;
+      }
+      .left {
+        width: 30%;
+        border: solid;
+        text-align: center;
+        border-width: 1px;
+        height: 500px;
+      }
+      .right {
+        width: 70%;
+        border: solid;
+        border-width: 1px;
+        height: 500px;
+      }
+      #left {
+        margin-top: 50%;
+        margin-left: 50%;
+      }
+      button {
+        margin: 1%;
+      }
+    </style>
   </head>
   <body>
-    <div class="out">
-      <div class="in"></div>
+    <div class="main">
+      <div class="left"><div id="left"></div></div>
+      <div class="right"></div>
     </div>
 
     <script>
-      let body = document.body.childNodes[1].childNodes[1];
-      console.log(body);
+      var left = document.getElementById("left");
+      let leftData = "";
+      for (var i = 0; i < 20; i++) {
+        if (i % 4 == 0 && i != 0) leftData += `<br/>`;
+        leftData += `<button>i</button>`;
+      }
+
+      left.innerHTML = leftData;
     </script>
   </body>
 </html>

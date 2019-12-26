@@ -59,7 +59,7 @@ select:focus {
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 50px;
   left: 0;
   top: 0;
   width: 100%;
@@ -76,7 +76,7 @@ select:focus {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 30%;
+  width: 80%;
 }
 
 /* The Close Button */
@@ -107,12 +107,13 @@ select:focus {
   .Card {
     width: 90%;
   }
+  .modal {
+    width: 90%;
+    height: 100%;
+  }
 }
 @media screen and (min-width: 1000px) {
   input {
     width: 100%;
   }
-  /* .Card {
-      width: 40%;
-    } */
 }
