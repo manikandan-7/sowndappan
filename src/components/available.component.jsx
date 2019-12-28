@@ -1,6 +1,6 @@
 import React from "react";
-import BusCard from "./bus-card.component";
-import TicketCard from "./ticket-card.component";
+import Item from "./item/item.component";
+import Bus from "./bus/bus.component";
 
 const Available = ({ list, seeBus, userInfo, cancelTicket }) => {
   return (
@@ -8,9 +8,9 @@ const Available = ({ list, seeBus, userInfo, cancelTicket }) => {
       {list.length && list ? (
         list.map(bus => {
           return userInfo ? (
-            <TicketCard key={bus.id} bus={bus} seeBus={seeBus} cancelTicket={cancelTicket} />
+            <Item key={bus.id} item={bus} show={seeBus} cancelItem={cancelTicket} />
           ) : (
-            <BusCard key={bus.id} bus={bus} seeBus={seeBus} />
+            <Bus key={bus.id} item={bus} show={seeBus} />
           );
         })
       ) : (

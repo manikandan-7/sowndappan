@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import FilterBus from "./filter.container";
-import { filterBusAction, travelDetails, findBusUsingId, cancelTicketFormTravelDetails } from "../actions/book.actions";
+import Filter from "./filter/filter.container";
+import { filterBusAction, travelDetails, findBusUsingId, cancelTicketFormTravelDetails } from "../actions/book/book.actions";
 import { validateDate } from "../validate/date.validate";
 import Available from "../components/available.component";
-import BusSeat from "../components/bus-seat.component";
 import ModalComponent from "./modal.container";
-import TicketInfo from "../components/ticketInfo.component";
+import Item from "../components/item/item.component";
+import Bus from "../components/bus/bus.component";
 
 export default class BookContainer extends Component {
   state = {
@@ -38,8 +38,9 @@ export default class BookContainer extends Component {
   closeModal = () => {
     this.setState({ modalIsOpen: false });
   };
-  resetStateVal = () => {
+  resetStateVal = newTravelDetails => {
     this.setState({
+      travelDetails: newTravelDetails,
       travelDetailsVisible: true,
       availableBusVisible: false,
       busSeatingVisible: false,
@@ -55,10 +56,11 @@ export default class BookContainer extends Component {
     if (!validateDate(date)) return alert("Date is Not Proper");
     this.setState({
       travelDetailsVisible: false,
-      currentHead: "Available Travels",
       availableBusVisible: true,
       busSeatingVisible: false,
-      bookedBusVisible: false
+      modalIsOpen: false,
+      bookedBusVisible: false,
+      currentHead: "Booked Tickets"
     });
     let requiredDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     let filteredBus = filterBusAction(from, to);
@@ -75,6 +77,7 @@ export default class BookContainer extends Component {
     this.setState({
       travelDetailsVisible: false,
       availableBusVisible: false,
+      modalIsOpen: false,
       busSeatingVisible: true,
       currentHead: "Bus Seating",
       bookedBusVisible: false,
@@ -86,6 +89,7 @@ export default class BookContainer extends Component {
     if (bus) {
       this.setState({
         currentTicket: bus,
+        modalIsOpen: false,
         currentHead: "Ticket Details",
         bookedBusVisible: true,
         travelDetailsVisible: false,
@@ -109,6 +113,7 @@ export default class BookContainer extends Component {
   backToTravels = () => {
     this.setState({
       travelDetailsVisible: false,
+      modalIsOpen: false,
       bookedBusVisible: false,
       currentHead: "Availables",
       availableBusVisible: true,
@@ -128,16 +133,15 @@ export default class BookContainer extends Component {
   };
   cancelTicket = async (id, ticket) => {
     let newTravelDetails = await cancelTicketFormTravelDetails(id, ticket);
-    console.log(newTravelDetails);
     await this.setState({
       travelDetails: newTravelDetails,
       travelDetailsVisible: true,
+      modalIsOpen: false,
       currentHead: "Booked Tickets",
       bookedBusVisible: false,
       availableBusVisible: false,
       busSeatingVisible: false
     });
-    this.closeModal();
   };
 
   render() {
@@ -162,7 +166,7 @@ export default class BookContainer extends Component {
           <div className="card border-none box-shadow-2 card-body-custom">
             <div className="card-body">
               <h3>Filter Bus</h3>
-              <FilterBus filterBus={this.filterBus} clear={this.returnToBooking} />
+              <Filter filterBus={this.filterBus} clear={this.returnToBooking} />
             </div>
           </div>
         </div>
@@ -176,14 +180,15 @@ export default class BookContainer extends Component {
                 ""
               )}
               {availableBusVisible ? <Available list={filteredBus} seeBus={this.seeBus} /> : ""}
-              {busSeatingVisible || !modalIsOpen ? (
+              {busSeatingVisible ? (
                 <div>
-                  <BusSeat
-                    bus={selectedBus}
+                  {/* <BusSeat bus={selectedBus} seats={selectedBusSeats} selectSeat={this.selectSeat} close={this.backToTravels} /> */}
+                  <Bus
+                    item={selectedBus}
                     seats={selectedBusSeats}
-                    selectSeat={this.selectSeat}
+                    showSeatsBoolean={true}
+                    select={this.selectSeat}
                     close={this.backToTravels}
-                    confrim={this.confrim}
                   />
                   <br></br>
                   <ModalComponent
@@ -198,7 +203,11 @@ export default class BookContainer extends Component {
               ) : (
                 ""
               )}
-              {bookedBusVisible ? <TicketInfo ticket={currentTicket} cancelTicket={this.cancelTicket} close={this.returnToBooking} /> : ""}
+              {bookedBusVisible ? (
+                <Item item={currentTicket} addtionalInfoBoolean={true} cancelItem={this.cancelTicket} close={this.returnToBooking} />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

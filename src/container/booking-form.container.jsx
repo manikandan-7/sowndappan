@@ -1,5 +1,5 @@
 import React from "react";
-import Textfield from "../components/textfield.component";
+import Textfield from "../components/common/textfield.component";
 const BookingForm = ({ err, name, ph, onChange, index }) => {
   let nameVal = "name" + index;
   let phVal = "ph" + index;

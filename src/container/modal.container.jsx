@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Modal from "react-modal";
 import BookingForm from "./booking-form.container";
 import { validateBookingDetails } from "../validate/booking.validate";
-import { storeUserDetails } from "../actions/book.actions";
+import { storeUserDetails } from "../actions/book/book.actions";
 
 Modal.setAppElement("body");
 class ModalComponent extends Component {
@@ -44,10 +44,10 @@ class ModalComponent extends Component {
     if (this.findErrlength(err[0]) || this.findErrlength(err[1] || this.findErrlength(err[2]))) {
       await this.setState({ err0: err[0], err1: err[1], err2: err[2] });
     } else {
-      storeUserDetails(this.state, allUserInfo);
+      let newTravelDetails = storeUserDetails(this.state, allUserInfo);
       alert("Your Bus Is Sheduled");
       closeModal();
-      resetStateVal();
+      resetStateVal(newTravelDetails);
     }
   };
   onChange = e => {

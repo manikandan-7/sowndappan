@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { register } from "../actions/register.actions";
-import { getDataFromLocalStorage } from "../store/store";
-import Textfield from "../components/textfield.component";
+import { register } from "../../actions/register/register.actions";
+import { getDataFromLocalStorage } from "../../store/store";
+import Textfield from "../../components/common/textfield.component";
+import Button from "../../components/common/button.component";
+
 export default class RegisterContainer extends Component {
   state = {
     name: "",
@@ -10,7 +12,7 @@ export default class RegisterContainer extends Component {
   };
   componentDidMount() {
     let user = getDataFromLocalStorage("currentUserDetails");
-    if (Object.keys(user).length) window.location.replace("/");
+    if (Object.keys(user).length) this.props.history.push("/");
   }
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   onSubmit = () => {
@@ -50,9 +52,7 @@ export default class RegisterContainer extends Component {
                 err={err.password}
               />
               <div className="text-center">
-                <button className="btn-hover color-3" onClick={this.onSubmit}>
-                  Register
-                </button>
+                <Button className={"btn-hover color-3"} onClick={this.onSubmit} value={"Register"} />
               </div>
             </div>
           </div>

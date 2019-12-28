@@ -9,7 +9,7 @@ import Login from "./page/login.page";
 import Register from "./page/register.page";
 import Private from "./HOC/private.hoc";
 import Book from "./page/book.page";
-import Nav from "./components/nav.component";
+import Nav from "./container/nav/nav.component";
 
 function App() {
   return (

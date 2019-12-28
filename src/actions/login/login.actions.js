@@ -1,5 +1,5 @@
-const { getDataFromLocalStorage, setDataToLocalStorage } = require("../store/store");
-const { validateLoginAndRegisterCreditionals } = require("../validate/login_register.validate");
+const { getDataFromLocalStorage, setDataToLocalStorage } = require("../../store/store");
+const { validateLoginAndRegisterCreditionals } = require("../../validate/login_register.validate");
 
 export const login = (name, password, history) => {
   let { err, isValid } = validateLoginAndRegisterCreditionals(name, password);

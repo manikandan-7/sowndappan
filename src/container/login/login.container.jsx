@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { login } from "../actions/login.actions";
-import { getDataFromLocalStorage } from "../store/store";
-import Textfield from "../components/textfield.component";
+import { login } from "../../actions/login/login.actions";
+import { getDataFromLocalStorage } from "../../store/store";
+import Textfield from "../../components/common/textfield.component";
+import Button from "../../components/common/button.component";
 export default class LoginContainer extends Component {
   state = {
     name: "",
@@ -51,9 +51,7 @@ export default class LoginContainer extends Component {
                 err={err.password}
               />
               <div className="text-center">
-                <button className="btn-hover color-3" onClick={this.onSubmit}>
-                  Login
-                </button>
+                <Button className={"btn-hover color-3"} onClick={this.onSubmit} value={"Login"} />
               </div>
             </div>
           </div>

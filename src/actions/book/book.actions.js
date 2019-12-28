@@ -1,4 +1,5 @@
-import { getDataFromLocalStorage, setDataToLocalStorage } from "../store/store";
+import { getDataFromLocalStorage, setDataToLocalStorage } from "../../store/store";
+
 export const filterBusAction = (from, to) => {
   let travels = getDataFromLocalStorage("travels");
   let filteredBus = travels.filter(bus => bus.from === from && bus.to === to);
@@ -89,5 +90,5 @@ export const storeUserDetails = (state, allUserDetails) => {
     });
   }
   setDataToLocalStorage("travels", travels);
-  return;
+  return currentUser.travelDetails;
 };
