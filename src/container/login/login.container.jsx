@@ -16,9 +16,8 @@ export default class LoginContainer extends Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   onSubmit = () => {
     this.setState({ err: {} });
-    let { history } = this.props;
     let { password, name } = this.state;
-    let err = login(name, password, history);
+    let err = login(name, password);
     if (err) this.setState({ err: err });
   };
   render() {

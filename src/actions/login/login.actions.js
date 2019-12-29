@@ -1,7 +1,7 @@
 const { getDataFromLocalStorage, setDataToLocalStorage } = require("../../store/store");
 const { validateLoginAndRegisterCreditionals } = require("../../validate/login_register.validate");
 
-export const login = (name, password, history) => {
+export const login = (name, password) => {
   let { err, isValid } = validateLoginAndRegisterCreditionals(name, password);
   if (!isValid) return err;
   let userDetails = getDataFromLocalStorage("userDetails");

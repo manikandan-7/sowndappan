@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
-import BookingForm from "./booking-form.container";
-import { validateBookingDetails } from "../validate/booking.validate";
-import { storeUserDetails } from "../actions/book/book.actions";
+import BookingForm from "../book/booking-form.container";
+import { validateBookingDetails } from "../../validate/booking.validate";
+import { storeUserDetails } from "../../actions/book/book.actions";
 
 Modal.setAppElement("body");
 class ModalComponent extends Component {

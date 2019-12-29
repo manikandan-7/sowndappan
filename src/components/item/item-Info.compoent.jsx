@@ -1,8 +1,6 @@
 import React from "react";
 
-export default function ItemInfo({ item, show, cancelItem, addtionalInfoBoolean }) {
-  let { bookedSeats } = item;
-  let seats = bookedSeats.join(" , ");
+export default function ItemInfo({ item, show, cancelItem, addtionalInfoBoolean, travelsItemBoolean, close, showSeatsBoolean }) {
   return (
     <div className="row">
       <div className="col-md-2 m-10 busIcon">
@@ -10,7 +8,7 @@ export default function ItemInfo({ item, show, cancelItem, addtionalInfoBoolean 
           <i className="fas fa-bus-alt"></i>
         </span>
       </div>
-      <div onClick={addtionalInfoBoolean ? () => {} : () => show(item.id, item)} className="col-md-8 m-1 p-0">
+      <div onClick={addtionalInfoBoolean ? () => {} : () => show(item.id, item)} className="col-md-7 m-1 p-0">
         <div className="row">
           <div className="col-md-3 text-left" style={{ marginTop: "2%" }}>
             <h4>{item.travelsName}</h4>
@@ -23,16 +21,33 @@ export default function ItemInfo({ item, show, cancelItem, addtionalInfoBoolean 
         </div>
         <hr></hr>
         <div className="text-left fontSmall">
-          <div className="row">
-            <div className="col-md-6">
-              <label htmlFor="date text-muted ">{item.date}</label>
+          {travelsItemBoolean ? (
+            <div className="row">
+              <div className="col-md-6">
+                <label htmlFor="date text-muted ">Number Of Seats - {item.noOfSeats}</label>
+              </div>
             </div>
-            <div className="col-md-6">
-              <label htmlFor="date text-muted ">Booked Seats - {item.seats}</label>
+          ) : (
+            <div className="row">
+              <div className="col-md-6">
+                <label htmlFor="date text-muted ">{item.date}</label>
+              </div>
+              <div className="col-md-6">
+                <label htmlFor="date text-muted ">Booked Seats - {item.seats}</label>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
+      {showSeatsBoolean ? (
+        <div className="col-md-2 p-0 trashIcon">
+          <button className="btn btn-outline-danger" onClick={() => close()}>
+            Back
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
       {cancelItem ? (
         <div className="col-md-1 trashIcon" onClick={() => cancelItem(item.id, item)}>
           <span>

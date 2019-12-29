@@ -2,7 +2,7 @@
   "travels": [
     {
       "id": 1,
-      "name": "somu",
+      "travelsName": "Ganapathi Travels",
       "from": "coimbatore",
       "to": "chennai",
       "noOfSeats": 20,
@@ -23,7 +23,7 @@
     },
     {
       "id": 2,
-      "name": "somu",
+      "travelsName": "Ganapathi Travels",
       "from": "chennai",
       "to": "coimbatore",
       "noOfSeats": 20,
@@ -44,7 +44,7 @@
     },
     {
       "id": 3,
-      "name": "somu",
+      "travelsName": "Ganapathi Travels",
       "from": "chennai",
       "to": "salem",
       "noOfSeats": 20,
@@ -65,7 +65,7 @@
     },
     {
       "id": 4,
-      "name": "Anto",
+      "travelsName": "Red Bus",
       "from": "coimbatore",
       "to": "chennai",
       "noOfSeats": 20,
@@ -86,7 +86,7 @@
     },
     {
       "id": 5,
-      "name": "Anto",
+      "travelsName": "Red Bus",
       "from": "chennai",
       "to": "coimbatore",
       "noOfSeats": 20,
@@ -107,7 +107,7 @@
     },
     {
       "id": 6,
-      "name": "Anto",
+      "travelsName": "Red Bus",
       "from": "salem",
       "to": "chennai",
       "noOfSeats": 20,
@@ -128,7 +128,7 @@
     },
     {
       "id": 7,
-      "name": "calvin",
+      "travelsName": "Fask Book",
       "from": "salem",
       "to": "chennai",
       "noOfSeats": 20,
@@ -149,7 +149,7 @@
     },
     {
       "id": 8,
-      "name": "calvin",
+      "travelsName": "Fask Book",
       "from": "salem",
       "to": "coimbatore",
       "noOfSeats": 20,
@@ -170,8 +170,8 @@
     },
     {
       "id": 9,
-      "name": "calvin",
-      "from": "salem",
+      "travelsName": "Fask Book",
+      "from": "chennai",
       "to": "coimbatore",
       "noOfSeats": 20,
       "dates": [
@@ -191,7 +191,7 @@
     },
     {
       "id": 10,
-      "name": "purish",
+      "travelsName": "Shiva Travels",
       "from": "chennai",
       "to": "coimbatore",
       "noOfSeats": 20,
@@ -212,7 +212,7 @@
     },
     {
       "id": 11,
-      "name": "purish",
+      "travelsName": "Shiva Travels",
       "from": "salem",
       "to": "chennai",
       "noOfSeats": 20,

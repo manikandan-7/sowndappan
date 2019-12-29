@@ -1,16 +1,15 @@
 import React from "react";
-import Item from "./item/item.component";
-import Bus from "./bus/bus.component";
+import Item from "../item/item.component";
 
-const Available = ({ list, seeBus, userInfo, cancelTicket }) => {
+const List = ({ list, seeBus, userInfo, cancelTicket }) => {
   return (
-    <div className="removeScrollBar overflow card-body-custom">
+    <div className="removeScrollBar overflow card-body-custom ">
       {list.length && list ? (
         list.map(bus => {
           return userInfo ? (
             <Item key={bus.id} item={bus} show={seeBus} cancelItem={cancelTicket} />
           ) : (
-            <Bus key={bus.id} item={bus} show={seeBus} />
+            <Item key={bus.id} item={bus} show={seeBus} travelsItemBoolean={true} />
           );
         })
       ) : (
@@ -22,4 +21,4 @@ const Available = ({ list, seeBus, userInfo, cancelTicket }) => {
     </div>
   );
 };
-export default Available;
+export default List;

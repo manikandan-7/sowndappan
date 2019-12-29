@@ -46,19 +46,19 @@ export const cancelTicketFormTravelDetails = (id, ticket) => {
 export const storeUserDetails = (state, allUserDetails) => {
   let { name0, name1, name2, ph0, ph1, ph2 } = state;
   let { selectedBus, selectedBusSeats, selectedSeats, date } = allUserDetails;
-  let { name, from, to, id } = selectedBus,
+  let { travelsName, from, to, id } = selectedBus,
     index,
     dateIndex;
   let nameVal = [name0, name1, name2],
     phVal = [ph0, ph1, ph2];
   let newBooking = {
     id: Math.random(),
-    travelsName: name,
+    travelsName,
     date,
     from,
     to,
     travelsId: id,
-    bookedSeats: selectedSeats,
+    seats: selectedSeats,
     passengersInfo: []
   };
   for (var i = 0; i < selectedSeats.length; i++)

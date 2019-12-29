@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = ({ bodyVal }) => {
+const Table = ({ body }) => {
   return (
     <table class="table table-striped tableColor ">
       <thead>
@@ -11,7 +11,7 @@ const Table = ({ bodyVal }) => {
         </tr>
       </thead>
       <tbody>
-        {bodyVal.map((i, index) => (
+        {body.map((i, index) => (
           <tr key={index}>
             <th scope="row">{index + 1}</th>
             <td>{i.name}</td>
