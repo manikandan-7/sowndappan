@@ -37,7 +37,7 @@ export const cancelTicketFormTravelDetails = (id, ticket) => {
   for (index = 0; index < travels.length; index++) if (travels[index].id === ticket.travelsId) break;
   let dates = travels[index].dates;
   for (dateIndex = 0; dateIndex < dates.length; dateIndex++) if (dates[dateIndex].date === ticket.date) break;
-  for (var j = 0; j < ticket.bookedSeats.length; j++) dates[dateIndex].seats[ticket.bookedSeats[j]] = 0;
+  for (var j = 0; j < ticket.seats.length; j++) dates[dateIndex].seats[ticket.seats[j]] = 0;
   travels[index].dates = dates;
   setDataToLocalStorage("travels", travels);
   return newTravelDetails;

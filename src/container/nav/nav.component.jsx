@@ -17,8 +17,8 @@ class Nav extends Component {
   render() {
     let { logInfo } = this.state;
     return (
-      <div className="box-shadow">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="">
+        <nav class="navbar navbar-expand-lg navbar-light">
           <a class="navbar-brand" href="#">
             Lets go
           </a>

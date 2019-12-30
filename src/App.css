@@ -1,8 +1,24 @@
 body {
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   font-family: "Righteous", cursive;
+}
+
+/* //Desktop */
+.background-img {
+  background-image: url("./img/bus-bg.png");
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* margin-top: -5%; */
+}
+
+.p {
+  margin-top: 10%;
+  font-weight: bold;
+  font-size: 5vmax;
 }
 
 /* Border */
