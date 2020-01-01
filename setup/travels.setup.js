@@ -36,7 +36,7 @@ const insertTravelsDetails = async () => {
 
 const createDatesTable = async () => {
   await pool.query(
-    "create table dates(id SERIAL PRIMARY KEY,date VARCHAR(20),seats VARCHAR[20],travels_id INTEGER REFERENCES travels(id));"
+    "create table dates(id SERIAL PRIMARY KEY,date VARCHAR(20),seats VARCHAR[100],travels_id INTEGER REFERENCES travels(id));"
   );
 };
 
@@ -77,7 +77,35 @@ const insertDatesDetails = async () => {
     for (var j = 0; j <= 1; j++) await pool.query("insert into dates(date,seats,travels_id) values($1,$2,$3)", [date[j], seats, i]);
 };
 
+const updateUser = async () => {
+  let seats = [
+    "female",
+    "male",
+    "male",
+    "male",
+    "male",
+    "female",
+    "female",
+    "female",
+    "female",
+    "female",
+    "male",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+  ];
+  let data = await pool.query("update dates set seats = $1 where id = $2", [seats, 1]);
+  console.log(data);
+};
+
 // createDatesTable();
 // selectDatesTable();
 // dropDatesTable();
 // insertDatesDetails();
+// updateUser();

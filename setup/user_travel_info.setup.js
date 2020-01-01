@@ -63,7 +63,7 @@ const insertTravelsDetails = async () => {
   );
 };
 
-// createUserInfo();
+createUserInfo();
 // insertTravelsDetails();
 // seeUserInfo();
 // dropTable();
