@@ -10,9 +10,9 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 require("./config/passport")(passport);
 app.use("/", router);
-
 app.listen(PORT, () => {
   console.log(`Server running at: http://localhost:${PORT}/`);
 });
 
+require("./setup/travels.setup");
 module.exports = app;
