@@ -1,21 +1,20 @@
 const users_infos = require("../models").users_info;
 
-const createUserInfo = async (req, res) => {
+const createUserInfo = async payload => {
   try {
     let data = await users_infos.create({
-      travels_name: "FastBook",
-      date: "4/1/2020",
-      from_city: "coimbatore",
-      to_city: "salem",
-      travels_id: 6,
-      seats: [1, 2, 3],
-      passengers_info: [{ name: "jai", gender: "male", ph: "sdvberuv" }],
-      users_id: 6
+      travels_name: payload.travels_name,
+      date: payload.date,
+      from_city: payload.from_city,
+      to_city: payload.to_city,
+      travels_id: payload.travels_id,
+      seats: payload.seats,
+      passengers_info: payload.passengers_info,
+      users_id: payload.users_id
     });
-    res.status(201).json(data);
+    return data;
   } catch (err) {
-    console.log(err);
-    res.status(400).json(err);
+    return err;
   }
 };
 module.exports = { createUserInfo };

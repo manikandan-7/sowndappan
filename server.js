@@ -5,7 +5,7 @@ const passport = require("passport");
 // Set up the express app
 const app = express();
 app.use(logger("dev"));
-app.listen(5000, () => console.log("Server Started in 3000"));
+app.listen(5000, () => console.log("Server Started in 5000"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());

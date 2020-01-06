@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     travels_name: DataTypes.STRING,
     from_city: DataTypes.STRING,
     to_city: DataTypes.STRING,
-    no_of_seats: DataTypes.INTEGER
+    no_of_seats: DataTypes.INTEGER,
+    time: DataTypes.INTEGER
   });
   travels.associate = function(models) {
     travels.hasMany(models.dates, {

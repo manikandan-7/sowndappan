@@ -15,11 +15,12 @@ module.exports = passport => {
   passport.use(
     new JwtStrategy(opts, async (payload, next) => {
       try {
-        let { dataValues } = await users.findOne({ where: { email: payload.email } });
+        let dataValues = await users.findOne({ where: { email: payload.email } });
         if (dataValues) return next(null, dataValues);
         return next(null, false);
       } catch (e) {
         console.log(e);
+        window.location.href = "/login";
       }
     })
   );

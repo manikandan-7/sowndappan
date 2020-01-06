@@ -1,6 +1,6 @@
 const users = require("../models").users;
-const { encript, bscriptCompare } = require("../services/bscript");
-const { jwtSign } = require("../services/jwt");
+const { encript, bscriptCompare } = require("../services/bscript_service");
+const { jwtSign } = require("../services/jwt_services");
 const { jwtVal } = require("../config/keys.config");
 
 const register = async (req, res) => {
@@ -33,7 +33,7 @@ const login = async (req, res) => {
 };
 
 const userInfo = (req, res) => {
-  res.json(req.user);
+  res.status(200).json(req.user);
 };
 
 module.exports = {
