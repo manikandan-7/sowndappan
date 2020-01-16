@@ -11,6 +11,7 @@ const generatMailInfo = async (payload, SERVICE_NO) => {
     <p>From :: ${payload.from_city}</p>
     <p>To :: ${payload.to_city}</p>
     <p>Time :: ${payload.time}.00 (24hr format)</p>
+    <h3>Total :: ${payload.price} Rs</h3>
     <p>Passengers Info</p><p>Seats_NO :: `;
   console.log(payload.seats);
   await payload.seats.forEach(element => (TicketInfo += `${element}  `));

@@ -8,6 +8,7 @@ module.exports = {
       to_city: { type: Sequelize.STRING },
       no_of_seats: { type: Sequelize.INTEGER },
       time: { type: Sequelize.INTEGER },
+      price: { type: Sequelize.INTEGER },
       createdAt: { allowNull: false, type: Sequelize.DATE },
       updatedAt: { allowNull: false, type: Sequelize.DATE }
     });

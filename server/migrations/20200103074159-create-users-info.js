@@ -26,6 +26,9 @@ module.exports = {
       seats: {
         type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
+      price: {
+        type: Sequelize.INTEGER
+      },
       passengers_info: {
         type: Sequelize.ARRAY(Sequelize.JSON)
       },

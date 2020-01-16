@@ -12,10 +12,11 @@ let transporter = nodemailer.createTransport({
 const generatMailInfo = require("../utils/email_service_content");
 
 async function mail(payload, id, SERVICE_NO) {
+  // console.log(payload.email);
   let emailContent = await generatMailInfo(payload, SERVICE_NO);
   let info = await transporter.sendMail({
     from: '"Let`s Go" <harincastle14@gmail.com>',
-    to: "mvsomupushpa@gmail.com",
+    to: payload.email,
     subject: "Bus Ticket",
     text: "Thanks for travelling with us",
     html: emailContent

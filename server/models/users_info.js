@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     to_city: DataTypes.STRING,
     travels_id: DataTypes.INTEGER,
     seats: DataTypes.ARRAY(DataTypes.INTEGER),
-    passengers_info: DataTypes.ARRAY(DataTypes.JSON)
+    passengers_info: DataTypes.ARRAY(DataTypes.JSON),
+    price: DataTypes.INTEGER
   });
   users_info.associate = function(models) {
     users_info.belongsTo(models.users, {

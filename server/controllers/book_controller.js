@@ -2,7 +2,7 @@ const dates = require("../models").dates;
 const travels = require("../models").travels;
 const users_infos = require("../models").users_info;
 const { getTravelsFromElasticSearch } = require("./service.controller");
-const { getCache, hasCache, setCache } = require("../services/cache_service");
+const { getCache, hasCache, setCache, takeCache } = require("../services/cache_service");
 const mail = require("../services/mail_services");
 const scheduleMail = require("../services/schedule_services");
 
@@ -13,6 +13,7 @@ const usersTicketInfo = async (req, res) => {
     if (hasCache(`USER_${id}_TICKET_INFO`)) return res.status(200).json(getCache(`USER_${id}_TICKET_INFO`));
     let users_info = await users_infos.findAll({ where: { users_id: id } });
     users_info.forEach(i => data.push(i.dataValues));
+    console.log(data);
     res.status(200).json(data);
   } catch (err) {
     res.status(400).json(err);
@@ -24,6 +25,7 @@ const cancelTicket = async (req, res) => {
     let { id, ticket } = req.body,
       newSeats,
       data = [];
+    if (!id || !ticket) return res.status(417).json({ success: false, message: "Need Sufficient Data t perform this action" });
     let bookedSeat = ticket.seats;
     await users_infos.destroy({ where: { id: id } });
     let { dataValues } = await dates.findOne({ where: { travels_id: ticket.travels_id, date: ticket.date } });
@@ -33,6 +35,7 @@ const cancelTicket = async (req, res) => {
     await dates.update({ seats: newSeats }, { where: { id: dates_id } });
     let users_info = await users_infos.findAll({ where: { users_id: req.user.id } });
     users_info.forEach(i => data.push(i.dataValues));
+    takeCache(`USER_${req.user.id}_TICKET_INFO`);
     res.status(200).json(data);
   } catch (err) {
     res.status(400).json(err);
@@ -43,6 +46,7 @@ const filterTravels = async (req, res) => {
   try {
     let { from_city, to_city } = req.body,
       val = [];
+    if (!from_city || !to_city) return res.status(417).json({ success: false, message: "Need Sufficient Data t perform this action" });
     if (hasCache(`FILTER_FROM_${from_city}_TO_${to_city}`)) return getCache(`FILTER_FROM_${from_city}_TO_${to_city}`);
     let data = await getTravelsFromElasticSearch();
     data.forEach(i => {
@@ -59,21 +63,13 @@ const bookTravels = async (req, res) => {
   try {
     let { newBooking, selectedDate } = req.body,
       data = [];
-    if (!newBooking || !selectedDate) return res.status(400).json("Unknown error");
-    let { travels_id, travels_name, date, from_city, to_city, seats, passengers_info } = newBooking,
+    if (!newBooking || !selectedDate) return res.status(417).json({ success: false, message: "Need Sufficient Data t perform this action" });
+    let { travels_id, travels_name, date, from_city, to_city, seats, passengers_info, price } = newBooking,
       p_info = "[";
     for (var i = 0; i < passengers_info.length; i++) p_info += `{"name":"${passengers_info[i].name}","gender":"${passengers_info[i].gender}","ph":"${passengers_info[i].ph}"}`;
     p_info += "]";
-    await users_infos.create({
-      travels_name: travels_name,
-      date: date,
-      from_city: from_city,
-      to_city: to_city,
-      travels_id: travels_id,
-      seats: seats,
-      passengers_info: passengers_info,
-      users_id: req.user.id
-    });
+    let totalPrice = passengers_info.length * price;
+    await users_infos.create({ travels_name: travels_name, date: date, from_city: from_city, to_city: to_city, travels_id: travels_id, seats: seats, passengers_info: passengers_info, price: totalPrice, users_id: req.user.id });
     let datesData = await dates.findOne({ where: { travels_id: travels_id, date: date } });
     if (datesData) {
       let dates_id = datesData.dataValues.id;
@@ -83,8 +79,9 @@ const bookTravels = async (req, res) => {
     let { dataValues } = await travels.findOne({ where: { id: travels_id } });
     users_info.forEach(i => data.push(i.dataValues));
     setCache(`USER_${req.user.id}_TICKET_INFO`, data);
-    // mail({ travels_name, date, from_city, to_city, travels_id, seats, passengers_info, users_id: req.user.id, time: dataValues.time }, 1);
-    scheduleMail({ travels_name, date, from_city, to_city, travels_id, seats, passengers_info, users_id: req.user.id, time: dataValues.time }, 2);
+    let mailContent = { email: req.user.email, travels_name, date, from_city, to_city, travels_id, seats, passengers_info, users_id: req.user.id, time: dataValues.time, price: totalPrice };
+    mail(mailContent, 1);
+    scheduleMail(mailContent, 2);
     res.status(200).json(data);
   } catch (err) {
     res.status(400).json(err);
@@ -95,6 +92,7 @@ const getTravelsById = async (req, res) => {
   try {
     let { id } = req.body,
       data = [];
+    if (!id) return res.status(417).json({ success: false, message: "Need Sufficient Data t perform this action" });
     if (hasCache(`TRAVELS_${id}`)) return getCache(`TRAVELS_${id}`);
     let { dataValues } = await travels.findOne({ where: { id: id } });
     let travel_data = await dates.findAll({ where: { travels_id: id } });

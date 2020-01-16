@@ -1,0 +1,215 @@
+{
+  "swagger": "2.0",
+  "info": { "version": "1.0.0", "title": "Let's Go", "description": "Let's Go, Bus Booking Application", "license": { "name": "Sowndapan M V" } },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
+    { "name": "Auth", "description": "API's for Users Authuntication" },
+    { "name": "Book", "description": "API's for Handling Bookings" },
+    { "name": "Chats", "description": "API's for Handling Chats" }
+  ],
+  "securityDefinitions": { "Bearer": { "type": "apiKey", "name": "Authorization", "in": "header" } },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "Create new user",
+        "parameters": [{ "name": "user", "in": "body", "description": "User that we want to create", "schema": { "$ref": "#/definitions/User" } }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "New user is created" },
+          "400": { "description": "Request Error" },
+          "409": { "description": "User already exists" },
+          "412": { "description": "Input Error", "schema": { "$ref": "#/definitions/User" } }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "Login user",
+        "parameters": [{ "name": "user", "in": "body", "description": "User to Login", "schema": { "$ref": "#/definitions/User" } }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "User Logged in" },
+          "400": { "description": "Request Error" },
+          "409": { "description": "User Does not exists" },
+          "412": { "description": "Input Error", "schema": { "$ref": "#/definitions/User" } }
+        }
+      }
+    },
+    "/auth": {
+      "get": {
+        "tags": ["Auth"],
+        "security": [{ "Bearer": [] }],
+        "description": "Get User Info",
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "User Logged in" },
+          "400": { "description": "Request Error" },
+          "401": { "description": "You are UnAuthorized", "schema": { "$ref": "#/definitions/User" } }
+        }
+      }
+    },
+    "/book/filter": {
+      "post": {
+        "tags": ["Book"],
+        "security": [{ "Bearer": [] }],
+        "description": "Filter Bus for User",
+        "parameters": [{ "name": "Travels", "in": "body", "description": "Travels Details needed to filter", "schema": { "$ref": "#/definitions/Travels" } }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Bus Filtered" },
+          "400": { "description": "Request Error" },
+          "401": { "description": "You are UnAuthorized", "schema": { "$ref": "#/definitions/Travels" } },
+          "417": { "description": "InSufficient Data", "schema": { "$ref": "#/definitions/Travels" } }
+        }
+      }
+    },
+    "/book/getTravelsById": {
+      "post": {
+        "tags": ["Book"],
+        "security": [{ "Bearer": [] }],
+        "description": "Get Travels By Id",
+        "parameters": [{ "name": "id", "in": "body", "required": true, "description": "ID of travels that we want to find" }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Bus Filtered" },
+          "400": { "description": "Request Error" },
+          "401": { "description": "You are UnAuthorized" },
+          "417": { "description": "InSufficient Data", "schema": { "$ref": "#/definitions/Travels" } }
+        }
+      }
+    },
+    "/book/bookTravels": {
+      "post": {
+        "tags": ["Book"],
+        "security": [{ "Bearer": [] }],
+        "description": "Book Travels",
+        "parameters": [{ "name": "New Booking", "in": "body", "required": true, "description": "User Book Travels on a certain date" }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Travels Booked successfully" },
+          "400": { "description": "Request Error" },
+          "401": { "description": "You are UnAuthorized" },
+          "417": { "description": "InSufficient Data", "schema": { "$ref": "#/definitions/Users_Info" } }
+        }
+      }
+    },
+    "/book/cancelTicket": {
+      "post": {
+        "tags": ["Book"],
+        "security": [{ "Bearer": [] }],
+        "description": "Cancel Travels",
+        "parameters": [{ "name": "Cancel Booking", "in": "body", "required": true, "description": "User Cancel Booked Travels" }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Travels Cancelled Successfully" },
+          "400": { "description": "Request Error" },
+          "401": { "description": "You are UnAuthorized" },
+          "417": { "description": "InSufficient Data", "schema": { "$ref": "#/definitions/Users_Info" } }
+        }
+      }
+    },
+    "/book/usersTicketInfo": {
+      "get": {
+        "tags": ["Book"],
+        "security": [{ "Bearer": [] }],
+        "description": "Get Users Ticket Info",
+        "parameters": [{ "name": "Userws Tickets", "in": "body", "required": true, "description": "Users Ticket info" }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Tickets fetched Successfully" },
+          "400": { "description": "Request Error" },
+          "401": { "description": "You are UnAuthorized" },
+          "417": { "description": "InSufficient Data", "schema": { "$ref": "#/definitions/Users_Info" } }
+        }
+      }
+    },
+    "/chats/": {
+      "post": {
+        "tags": ["Chats"],
+        "security": [{ "Bearer": [] }],
+        "description": "Chat with Other user",
+        "parameters": [{ "name": "Chat info", "in": "body", "required": true, "description": "One user chat  with other " }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Chat send Successfully" },
+          "400": { "description": "Request Error" },
+          "401": { "description": "You are UnAuthorized" },
+          "417": { "description": "InSufficient Data", "schema": { "$ref": "#/definitions/Chats" } }
+        }
+      }
+    },
+    "/chats/all": {
+      "post": {
+        "tags": ["Chats"],
+        "security": [{ "Bearer": [] }],
+        "description": "Get all the chats ",
+        "parameters": [{ "name": "chat records", "in": "body", "required": true, "description": "Get all the users chats records" }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "Chats fetched Successfully" },
+          "400": { "description": "Request Error" },
+          "401": { "description": "You are UnAuthorized" },
+          "417": { "description": "InSufficient Data", "schema": { "$ref": "#/definitions/Chats" } }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": ["email", "name", "googleId", "password"],
+      "properties": {
+        "_id": { "type": "string", "uniqueItems": true },
+        "email": { "type": "string", "uniqueItems": true },
+        "name": { "type": "string" },
+        "googleId": { "type": "string" },
+        "password": { "type": "string" }
+      }
+    },
+    "Users_Info": {
+      "required": ["travels_name", "date", "from_city", "to_city", "travels_id", "seats", "passengers_info", "users_id"],
+      "properties": {
+        "travels_name": { "type": "string" },
+        "date": { "type": "string" },
+        "from_city": { "type": "string" },
+        "to_city": { "type": "string" },
+        "travels_id": { "type": "number" },
+        "seats": { "type": "array", "items": { "type": "number" } },
+        "passengers_info": { "type": "array", "items": { "type": "object", "properties": { "name": { "type": "string" }, "ph": { "type": "number" } } } },
+        "users_id": { "type": "number" }
+      }
+    },
+    "Travels": {
+      "required": ["travels_name", "from_city", "to_city", "no_of_seats", "time", "price"],
+      "properties": {
+        "travels_name": { "type": "string" },
+        "from_city": { "type": "string" },
+        "to_city": { "type": "string" },
+        "no_of_seats": { "type": "number" },
+        "time": { "type": "number" },
+        "price": { "type": "number" }
+      }
+    },
+    "Dates": {
+      "required": ["date", "seats", "travels_id"],
+      "properties": {
+        "date": { "type": "string" },
+        "seats": { "type": "string" },
+        "travels_id": { "type": "number" }
+      }
+    },
+    "Chats": {
+      "required": ["sender", "reciever", "time", "message"],
+      "properties": {
+        "sender": { "type": "string" },
+        "reciever": { "type": "string" },
+        "time": { "type": "string" }
+      }
+    }
+  }
+}
