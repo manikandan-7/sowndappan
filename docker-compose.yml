@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+  db:
+    container_name: POSTGRES_DB
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: null
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test
+    ports:
+      - "5433:5432"
+  es:
+    container_name: elasticsearch
+    image: elastic-search
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports:
+      - "9300:9200"
+  web:
+    container_name: pokestop
+    image: pokestop
+    depends_on:
+      - db
+      - es
+    ports:
+      - "5000:5000"

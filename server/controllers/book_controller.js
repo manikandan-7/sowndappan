@@ -47,7 +47,7 @@ const filterTravels = async (req, res) => {
     let { from_city, to_city } = req.body,
       val = [];
     if (!from_city || !to_city) return res.status(417).json({ success: false, message: "Need Sufficient Data t perform this action" });
-    if (hasCache(`FILTER_FROM_${from_city}_TO_${to_city}`)) return getCache(`FILTER_FROM_${from_city}_TO_${to_city}`);
+    // if (hasCache(`FILTER_FROM_${from_city}_TO_${to_city}`)) return getCache(`FILTER_FROM_${from_city}_TO_${to_city}`);
     let data = await getTravelsFromElasticSearch();
     data.forEach(i => {
       if (i._source.from_city === from_city && i._source.to_city === to_city) val.push({ id: parseInt(i._id), ...i._source });
